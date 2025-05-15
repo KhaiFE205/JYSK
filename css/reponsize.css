@@ -1,0 +1,404 @@
+/* ========== Responsive ========== */
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    z-index: 1001;
+  }
+
+  .main-header {
+    flex-direction: column;
+    padding: 10px 20px;
+    align-items: stretch;
+    position: relative;
+  }
+
+  .left-section {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 75%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+  }
+
+  .main-nav.show {
+    display: flex;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+  }
+
+  .menu-item,
+  .menu li {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+  }
+
+  .submenu {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .submenu-left,
+  .submenu-right {
+    width: 100%;
+    border-right: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .submenu-right img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .icon-row {
+    display: none;
+  }
+
+  .search-cart-row {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .search-box {
+    width: calc(100% - 60px);
+    height: 45px;
+  }
+
+  .cart-icon {
+    font-size: 28px;
+  }
+
+  /* NEW: Hiển thị các icon bên phải trong menu di động */
+  .mobile-extra {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+  }
+
+  .mobile-extra a {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .mobile-extra a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .menu-toggle {
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    z-index: 1001;
+  }
+
+  .main-header {
+    flex-direction: column;
+    padding: 10px 20px;
+    align-items: stretch;
+    position: relative;
+  }
+
+  .left-section {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 75%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+  }
+
+  .main-nav.show {
+    display: flex;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+  }
+
+  .menu-item,
+  .menu li {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+  }
+
+  .submenu {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .submenu-left,
+  .submenu-right {
+    width: 100%;
+    border-right: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .submenu-right img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .icon-row {
+    display: none;
+  }
+
+  .search-cart-row {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .search-box {
+    width: calc(100% - 60px);
+    height: 45px;
+  }
+
+  .cart-icon {
+    font-size: 28px;
+  }
+
+  /* NEW: Hiển thị các icon bên phải trong menu di động */
+  .mobile-extra {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+  }
+
+  .mobile-extra a {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .mobile-extra a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+  }
+}
+
+/* sản phẩm */
+@media (max-width: 767px) {
+  .product-track {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Giảm khoảng cách giữa các sản phẩm */
+  }
+  .product-item{
+    text-align: center;
+  } 
+  
+/* Nút trái nằm hoàn toàn ngoài vùng sản phẩm */
+.slide-btn.left {
+  left: -5px;
+}
+
+/* Nút phải nằm hoàn toàn ngoài vùng sản phẩm */
+.slide-btn.right {
+  right: -5px;
+}
+.product-info p {
+text-align: left;
+  gap: 3px;
+}
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .product-track {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; /* Điều chỉnh khoảng cách cho các sản phẩm trên màn hình lớn hơn */
+  }
+  .product-item{
+    text-align: center;
+  }
+  /* Nút trái nằm hoàn toàn ngoài vùng sản phẩm */
+.slide-btn.left {
+  left: -3px;
+}
+
+/* Nút phải nằm hoàn toàn ngoài vùng sản phẩm */
+.slide-btn.right {
+  right: -3px;
+}
+}
+
+/* Tablet: 2 sản phẩm (giữ nguyên) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .slider-item {
+    flex: 0 0 50%;
+  }
+  .slide-btn1.left1 {
+    left: 0px;
+  }
+
+  .slide-btn1.right1 {
+    right: 0px;
+  }
+  .slider-item img {
+  width: 95%;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+}
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(68,68,68,.6);
+  color: white;
+  text-align: center;
+  padding: 18px 0;
+  font-size: 14px;
+  font-weight: 500;
+  width: 95%;
+  
+}
+}
+
+/* Mobile: 1 sản phẩm */
+@media (max-width: 768px) {
+    .slider-track {
+    justify-content: center;
+  }
+  .slider-item {
+    flex: 0 0 100%;
+  }
+
+  /* Điều chỉnh nút điều hướng gần sát slider hơn trên mobile */
+  .slide-btn1.left1 {
+    left: -8px;
+  }
+
+  .slide-btn1.right1 {
+    right: -7px;
+  }
+
+  .slide-btn1 {
+    top: 65%; /* Hạ nút xuống cho đẹp hơn trên mobile */
+    width: 35px;
+    height: 35px;
+    font-size: 22px;
+  }
+  .slider-item img {
+  width: 105%;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+}
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(68,68,68,.6);
+  color: white;
+  text-align: center;
+  padding: 18px 0;
+  font-size: 14px;
+  font-weight: 500;
+  width: 105%;
+  
+}
+}
+@media (max-width: 1024px) {
+  .article-item {
+    width: calc((100% - 30px) / 2); /* 2 bài + 1 khoảng cách */
+  }
+}
+
+/* Mobile: mỗi hàng 1 bài */
+@media (max-width: 768px) {
+  .article-item {
+    width: 100%;
+    text-align: center;
+  }
+ .article-item img {
+    width: 406.33px;
+  height: 278.29px;
+  object-fit: cover;
+}
+}
