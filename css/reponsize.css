@@ -511,3 +511,60 @@ text-align: left;
     min-width: 150px;
   }
 }
+/* Các nhóm sản phẩm trong phòng khách */
+@media (max-width: 768px) {
+  .product-group-list1 {
+    gap: 30px 16px;
+  }
+  .product-item12 {
+    flex: 0 0 calc((100% - 2 * 20px) / 3); /* 3 items per row on mobile */
+    max-width: calc((100% - 2 * 20px) / 3);
+  }
+  .product-item12 p {
+  font-size: 14px;
+   margin-top: 20px; 
+}
+/* phòng */
+@media (max-width: 768px) {
+  .room-category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    overflow-x: unset; /* bỏ scroll ngang */
+  }
+
+  .room-item {
+    width: calc((100% - 40px) / 3); /* 3 item mỗi hàng, trừ 2 khoảng cách = 40px */
+    flex-shrink: 0;
+    margin-bottom: 20px;
+  }
+  
+}
+
+}
+
+/* blog */
+/* Tablet: 2 bài 1 hàng */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .blog-list-two,
+  .blog-list-three {
+    flex-wrap: wrap;
+  }
+  .blog-item-two,
+  .blog-item-three {
+    flex: 1 1 calc(50% - 15px);
+  }
+}
+
+/* Mobile: 1 bài 1 hàng */
+@media (max-width: 767px) {
+  .blog-list-two,
+  .blog-list-three {
+    flex-wrap: wrap;
+  }
+  .blog-item-two,
+  .blog-item-three {
+    flex: 1 1 100%;
+  }
+}
