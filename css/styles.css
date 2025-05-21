@@ -196,9 +196,36 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   width: 100%;
   overflow: hidden;
-  height: 100%;
+  
 }
-
+.sale-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background: #0a4595;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: bold;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.price-old {
+  color: #888;
+  text-decoration: line-through;
+  font-size: 14px;
+  margin: 0 0 4px 0;
+  display: block;
+}
 .slider {
   display: flex;
   transition: transform 0.8s ease-in-out;
@@ -210,6 +237,7 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100%;
   object-fit: cover;
   flex-shrink: 0;
+   object-fit: contain;
 }
 
 .dots {
@@ -343,29 +371,26 @@ transition: transform 0.5s ease;
 
 /* Icon trái tim + giỏ hàng: DI CHUYỂN DƯỚI HÌNH */
 .product-icons {
-  margin-top: 10px;
-  display: flex; /* Hiển thị theo kiểu flex */
+  display: flex;
   justify-content: flex-end;
   gap: 8px;
-   min-height: 24px;
-  opacity: 0; /* Ban đầu ẩn bằng cách set opacity */
-  transform: translateY(20px); /* Đẩy icon xuống dưới, tạo khoảng trống */
-  transition: opacity 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng mờ dần và di chuyển */
+  height: 32px;         /* Chiếm chỗ từ đầu */
+  opacity: 0;           /* Ẩn icon bằng opacity */
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  position: absolute;   /* Hoặc absolute để không ảnh hưởng layout chính */
+  bottom: 10px;         /* Căn dưới ảnh sản phẩm hoặc vùng hiển thị */
+  right: 10px;
 }
-
 .product-item {
   position: relative;
-  background: #fff;
-  transition: border 0.3s ease;
-  padding: 10px;
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden; /* Giới hạn hình ảnh để không bị tràn */
+  overflow: hidden;
 }
 
+
 .product-item:hover .product-icons {
-  opacity: 1; /* Hiển thị icon khi hover vào sản phẩm */
-  transform: translateY(0); /* Di chuyển icon lên khi hover */
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .icon-btn {
@@ -778,7 +803,7 @@ padding: 20px;
 }
 
 .price {
-  font-size: 28px;
+  font-size: 18px;
   font-weight: bold;
   color: #00387c;
   margin: 15px 0;
@@ -1369,3 +1394,43 @@ padding: 20px;
     .show-more-btn:hover {
       background-color: #d43b3b;
     }
+
+
+
+    .hidden-row {
+  display: none;
+}
+.show-more-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+#showMoreBtn {
+  background: #0a4595;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 32px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+#showMoreBtn:hover {
+  background: #003c71;
+}
+#hideMoreBtn {
+  background: #0a4595;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 32px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+  margin-top: 16px;
+}
+#hideMoreBtn:hover {
+  background: #003c71;
+}

@@ -391,16 +391,30 @@ text-align: left;
 }
 
 /* Mobile: mỗi hàng 1 bài */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  .article-items-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 10px; /* Thêm padding để tránh sát mép */
+  }
   .article-item {
     width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    box-sizing: border-box;
     text-align: center;
   }
- .article-item img {
-    width: 406.33px;
-  height: 278.29px;
-  object-fit: cover;
-}
+  .article-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+  }
 }
 /* chi tiết sản phẩm */
 @media (max-width: 768px) {

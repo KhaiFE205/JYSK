@@ -114,15 +114,29 @@ document.addEventListener("click", function (e) {
 
 let currentSlide = 0;
 
-function slideRight() {
+function getSlideData() {
   const track = document.getElementById("productTrack");
-  const items = document.querySelectorAll(".product-item");
-  const itemWidth = items[0].offsetWidth + 15;
-  const totalItems = items.length;
-  const containerWidth = document.querySelector(".product-slider").offsetWidth;
-  const maxVisible = Math.floor(containerWidth / itemWidth);
-  const maxSlide = totalItems - maxVisible;
+  if (!track) return null;
+  const container = track.closest('.product-slider');
+  const items = track.querySelectorAll(".product-item");
+  if (!items.length || !container) return null;
 
+  const itemStyle = window.getComputedStyle(items[0]);
+  const itemMargin = parseFloat(itemStyle.marginRight) || 0;
+  const itemWidth = items[0].offsetWidth + itemMargin;
+
+  const totalItems = items.length;
+  const containerWidth = container.offsetWidth;
+  const maxVisible = Math.floor(containerWidth / itemWidth);
+  const maxSlide = Math.max(0, totalItems - maxVisible);
+
+  return { track, itemWidth, maxSlide };
+}
+
+function slideRight() {
+  const data = getSlideData();
+  if (!data) return;
+  const { itemWidth, maxSlide } = data;
   if (currentSlide < maxSlide) {
     currentSlide++;
     updateSlide(itemWidth);
@@ -130,7 +144,9 @@ function slideRight() {
 }
 
 function slideLeft() {
-  const itemWidth = document.querySelector(".product-item").offsetWidth + 15;
+  const data = getSlideData();
+  if (!data) return;
+  const { itemWidth } = data;
   if (currentSlide > 0) {
     currentSlide--;
     updateSlide(itemWidth);
@@ -139,82 +155,94 @@ function slideLeft() {
 
 function updateSlide(itemWidth) {
   const track = document.getElementById("productTrack");
+  const data = getSlideData();
+  if (!data) return;
+  const { maxSlide } = data;
+  // Đảm bảo currentSlide không vượt quá maxSlide
+  currentSlide = Math.max(0, Math.min(currentSlide, maxSlide));
   const moveX = currentSlide * itemWidth;
   track.style.transform = `translateX(-${moveX}px)`;
 }
 
 // Cập nhật lại vị trí khi resize để giữ đúng
 window.addEventListener("resize", () => {
-  const itemWidth = document.querySelector(".product-item").offsetWidth + 15;
-  updateSlide(itemWidth);
+  const data = getSlideData();
+  if (!data) return;
+  updateSlide(data.itemWidth);
 });
 
 
 
 
 //sản phẩm 2
-    const track1 = document.getElementById("productTrack1");
-  let scrollAmount1 = 0;
-  const scrollStep = 236; // 220px sản phẩm + 16px gap
+const track1 = document.getElementById("productTrack1");
+let scrollAmount1 = 0;
+const scrollStep = 236; // 220px sản phẩm + 16px gap
+
+function getMaxScroll1() {
   const visibleItems = Math.floor(document.querySelector('.product-slider').offsetWidth / scrollStep);
   const maxScroll = track1.children.length - visibleItems;
+  return Math.max(0, maxScroll);
+}
 
-  function slideLeft1() {
-    scrollAmount1 -= scrollStep;
-    if (scrollAmount1 < 0) scrollAmount1 = 0;
-    track1.style.transform = `translateX(-${scrollAmount1}px)`;
-  }
+function slideLeft1() {
+  scrollAmount1 -= scrollStep;
+  if (scrollAmount1 < 0) scrollAmount1 = 0;
+  track1.style.transform = `translateX(-${scrollAmount1}px)`;
+}
 
-  function slideRight1() {
+function slideRight1() {
+  const maxScrollAmount = scrollStep * getMaxScroll1();
+  // Nếu đã ở cuối, không tăng nữa
+  if (scrollAmount1 < maxScrollAmount) {
     scrollAmount1 += scrollStep;
-    const maxScrollAmount = scrollStep * maxScroll;
     if (scrollAmount1 > maxScrollAmount) scrollAmount1 = maxScrollAmount;
     track1.style.transform = `translateX(-${scrollAmount1}px)`;
   }
+}
 
-  // (Tuỳ chọn) Tự điều chỉnh lại khi resize màn hình
-  window.addEventListener("resize", () => {
-    scrollAmount1 = 0;
-    track1.style.transform = `translateX(0)`;
-  });
+// Tự điều chỉnh lại khi resize màn hình
+window.addEventListener("resize", () => {
+  scrollAmount1 = 0;
+  track1.style.transform = `translateX(0)`;
+});
 //nội thất
-    let currentIndex2 = 0;
+let currentIndex2 = 0;
 
-  function slideLeft2() {
-    const track = document.getElementById("sliderTrack");
-    const items = document.querySelectorAll(".slider-item");
-    const totalItems = items.length;
-
-    if (currentIndex > 0) {
-      currentIndex--;
-    }
-
-    const itemWidth = items[0].offsetWidth;
-    track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+function slideLeft2() {
+  const track = document.getElementById("sliderTrack");
+  const items = document.querySelectorAll(".slider-item");
+  if (currentIndex2 > 0) {
+    currentIndex2--;
   }
+  const itemWidth = items[0].offsetWidth;
+  track.style.transform = `translateX(-${currentIndex2 * itemWidth}px)`;
+}
 
-  function slideRight2() {
-    const track = document.getElementById("sliderTrack");
-    const items = document.querySelectorAll(".slider-item");
-    const totalItems = items.length;
+function slideRight2() {
+  const track = document.getElementById("sliderTrack");
+  const items = document.querySelectorAll(".slider-item");
+  const totalItems = items.length;
+  const itemsPerView = window.innerWidth <= 768 ? 1 : 2;
+  const maxIndex = totalItems - itemsPerView;
 
-    // Hiển thị 2 sản phẩm mỗi lần ở desktop
-    const itemsPerView = window.innerWidth <= 768 ? 1 : 2;
-
-    if (currentIndex < totalItems - itemsPerView) {
-      currentIndex++;
-    }
-
-    const itemWidth = items[0].offsetWidth;
-    track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+  if (currentIndex2 < maxIndex) {
+    currentIndex2++;
   }
+  const itemWidth = items[0].offsetWidth;
+  track.style.transform = `translateX(-${currentIndex2 * itemWidth}px)`;
+}
 
-  // Reset slider nếu thay đổi kích thước màn hình
-  window.addEventListener("resize", () => {
-    const items = document.querySelectorAll(".slider-item");
-    const itemWidth = items[0].offsetWidth;
-    document.getElementById("sliderTrack").style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-  });
+// Reset slider nếu thay đổi kích thước màn hình
+window.addEventListener("resize", () => {
+  const items = document.querySelectorAll(".slider-item");
+  const itemWidth = items[0].offsetWidth;
+  const totalItems = items.length;
+  const itemsPerView = window.innerWidth <= 768 ? 1 : 2;
+  const maxIndex = totalItems - itemsPerView;
+  if (currentIndex2 > maxIndex) currentIndex2 = maxIndex;
+  document.getElementById("sliderTrack").style.transform = `translateX(-${currentIndex2 * itemWidth}px)`;
+});
 
 
 
@@ -224,9 +252,9 @@ window.addEventListener("resize", () => {
 let currentSlide3 = 0;
 
 function getSlideData1() {
-  const track = document.getElementById("productTrack3");
+  const track = document.getElementById("productTrack3"); // Đúng ID của slider 3
   const container = document.querySelector(".product-slider");
-  const items = document.querySelectorAll("#productTrack1 .product-item");
+  const items = document.querySelectorAll("#productTrack3 .product-item"); // Đúng selector
 
   if (!track || !items.length || !container) return null;
 
